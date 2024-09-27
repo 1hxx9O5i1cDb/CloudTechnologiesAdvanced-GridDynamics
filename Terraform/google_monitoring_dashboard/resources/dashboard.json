@@ -1,0 +1,64 @@
+{
+  "displayName": "Kubernetes Cluster Dashboard",
+  "gridLayout": {
+    "columns": 4,
+    "widgets": [
+      {
+        "title": "CPU Utilization",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/container/cpu/usage_time\""
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "Memory Utilization",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/container/memory/usage_bytes\""
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "Node Availability",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/node/condition\""
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "title": "Pod Network Traffic",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/network/received_bytes_count\""
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

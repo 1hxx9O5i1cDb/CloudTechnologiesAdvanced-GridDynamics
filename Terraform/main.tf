@@ -65,6 +65,27 @@ module "google_secret_manager_secret_version" {
     depends_on = [ module.google_secret_manager_secret ]
 }
 
+module "google_compute_instance" {
+    source = "./google_compute_instance"
+    network_uri = module.google_compute_network.network_uri
+    depends_on = [ module.google_secret_manager_secret_version ]
+}
+
+### K8S
+
+module "google_container_cluster" {
+    source = "./google_container_cluster"
+    network_uri = module.google_compute_network.network_uri
+    subnetwork_uri = module.google_compute_subnetwork.subnetwork_uri
+    depends_on = [ google_compute_instance ]
+}
+
+## Monitoring
+
+
+
+
+
 
 
 
