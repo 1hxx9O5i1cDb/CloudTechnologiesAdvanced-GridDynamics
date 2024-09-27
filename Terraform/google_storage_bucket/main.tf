@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "bucket" {
-    name = "object-bucket"
+    name = "object-bucket-k8s-gd"
     location = "europe-central2"
 
     # Ensure High Availability
@@ -15,7 +15,7 @@ resource "google_storage_bucket" "bucket" {
             storage_class = "NEARLINE"
         }
         condition {
-            age = 30
+            age = 30    # 30 Days
         }
     }
 }

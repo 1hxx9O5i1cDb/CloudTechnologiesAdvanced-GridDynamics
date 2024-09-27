@@ -4,12 +4,12 @@ resource "google_artifact_registry_repository" "registry" {
     location = "europe-central2"
 
     cleanup_policies {
-        id = "delete-prerelease"
+        id = "delete-old-images"
         action = "DELETE"
         
         condition {
-            tag_state = "TAGGED"
-            older_than = "2592000s"
+            tag_state = "ANY"
+            older_than = "604800s"  # 7 Days
         }
     }
 }
