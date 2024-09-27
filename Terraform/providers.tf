@@ -4,14 +4,14 @@ terraform {
     required_providers {
         google = {
             source = "hashicorp/google"
-            version = "~> 6.2.0"
+            version = "~> 6.4.0"
         }
     }
 }
 
 provider "google" {
-    project = ""
-    region = ""
+    project = var.gcp_project_name
+    region = var.gcp_region
 
     add_terraform_attribution_label = false
 }

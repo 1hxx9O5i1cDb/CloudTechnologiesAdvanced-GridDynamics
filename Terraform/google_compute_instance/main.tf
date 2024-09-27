@@ -12,6 +12,13 @@ resource "google_compute_instance" "instance" {
 
     network_interface {
         network = var.network_uri
+
+        access_config {
+            // Ephemeral Public IP
+        }
     }
-  
+
+    tags = [ "bastion-host" ]
+
+    metadata_startup_script = file("${path.module}/resources/script.sh")
 }
