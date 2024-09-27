@@ -14,9 +14,14 @@ module "google_compute_firewall" {
     depends_on = [ module.google_compute_subnetwork ]
 }
 
+module "google_compute_address" {
+    source = "./google_compute_address"
+    depends_on = [ module.google_compute_firewall ]
+}
+
 module "google_artifact_registry_repository" {
     source = "./google_artifact_registry_repository"
-    depends_on = [ module.google_compute_firewall ]
+    depends_on = [ module.google_compute_address ]
 }
 
 module "google_storage_bucket" {
@@ -76,18 +81,23 @@ module "google_compute_instance" {
 module "google_container_cluster" {
     source = "./google_container_cluster"
     network_uri = module.google_compute_network.network_uri
-    subnetwork_uri = module.google_compute_subnetwork.subnetwork_uri
+    subnetwork_uri = module.google_compute_subnetwork.private_subnetwork_uri
     depends_on = [ google_compute_instance ]
 }
 
 ## Monitoring
 
+module "google_monitoring_dashboard" {
+    source = "./google_monitoring_dashboard"
+    depends_on = [ module.google_container_cluster ]
+}
 
-
-
-
-
-
+module "google_container_node_pool" {
+    source = "./google_container_node_pool"
+    cluster_name = module.google_container_cluster.cluster_name
+    cluster_location = module.google_container_cluster.cluster_location
+    depends_on = [ module.google_monitoring_dashboard ]
+}
 
 
 

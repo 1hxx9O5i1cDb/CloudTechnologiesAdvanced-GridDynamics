@@ -4,6 +4,6 @@ variable "network_uri" {
 }
 
 variable "subnetwork_uri" {
-    description = "The URI of the Subnetwork"
+    description = "The URI of the Private Subnetwork"
     type = string
 }

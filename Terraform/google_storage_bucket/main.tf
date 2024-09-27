@@ -1,8 +1,6 @@
 resource "google_storage_bucket" "bucket" {
     name = "object-bucket-k8s-gd"
     location = "europe-central2"
-
-    # Ensure High Availability
     storage_class = "STANDARD"
 
     versioning {
@@ -18,4 +16,15 @@ resource "google_storage_bucket" "bucket" {
             age = 30    # 30 Days
         }
     }
+
+    lifecycle_rule {
+        action {
+            type = "Delete"
+        }
+        condition {
+            age = 365   # 365 Days
+        }
+    }
+
+    uniform_bucket_level_access = true
 }
