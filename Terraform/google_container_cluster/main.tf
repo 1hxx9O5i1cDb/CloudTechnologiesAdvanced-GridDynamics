@@ -10,6 +10,17 @@ resource "google_container_cluster" "cluster" {
         enable_private_nodes = true
         enable_private_endpoint = false # Public API Access
         master_ipv4_cidr_block = "10.0.0.0/28"    # Cluster Control Plane IP Range
+        
+        master_global_access_config {
+            enabled = true
+        }
+    }
+
+    master_authorized_networks_config {
+        cidr_blocks {
+            cidr_block = "0.0.0.0/0"    # Public API Access
+            display_name = "public-access"
+        }
     }
 
     ip_allocation_policy {
@@ -20,12 +31,20 @@ resource "google_container_cluster" "cluster" {
         http_load_balancing {
             disabled = false
         }
+
+        horizontal_pod_autoscaling {
+            disabled = false
+        }
     }
 
-    ## High Availability Settings (3 Zones)
-    node_locations = [ "europe-central2-a", "europe-central2-b", "europe-central2-c" ]
+    binary_authorization {
+        evaluation_mode = "DISABLED"
+    }
 
-    ## Enable Logging and Monitoring
-    logging_service = "logging.googleapis.com/kubernetes"
-    monitoring_service = "monitoring.googleapis.com/kubernetes"
+    remove_default_node_pool = true
+
+    node_locations = [ "europe-central2-a", "europe-central2-b", "europe-central2-c" ]  ## High Availability Settings (3 Zones)
+
+    logging_service = "logging.googleapis.com/kubernetes"   ## Enable Logging and Monitoring
+    monitoring_service = "monitoring.googleapis.com/kubernetes" ## Enable Logging and Monitoring
 }
