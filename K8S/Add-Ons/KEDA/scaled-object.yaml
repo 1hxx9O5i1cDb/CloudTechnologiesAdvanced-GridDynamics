@@ -5,15 +5,11 @@ metadata:
   namespace: keda-pubsub-test
 spec:
   scaleTargetRef:
-    kind: Deployment
     name: keda-pubsub-go
-  minReplicaCount: 1
-  maxReplicaCount: 10
   triggers:
   - type: gcp-pubsub
     metadata:
       mode: "SubscriptionSize"
-      subscriptionName: img-processing-subscription
-      projectID: [YOUR_PROJECT_ID]
-      # Optional: define the number of messages in the queue that trigger scaling
       value: "5"
+      subscriptionName: "mysubscription" # Required
+      credentialsFromEnv: GOOGLE_APPLICATION_CREDENTIALS_JSON # Required
