@@ -5,4 +5,13 @@ resource "google_compute_vpn_tunnel" "tunnel" {
     peer_ip = var.peer_ip
     shared_secret = var.shared_secret
     ike_version = 2
+
+    local_traffic_selector = [
+        "10.0.1.0/24",
+        "10.0.2.0/24"
+    ]
+
+    remote_traffic_selector = [
+        "0.0.0.0/0"
+    ]
 }
