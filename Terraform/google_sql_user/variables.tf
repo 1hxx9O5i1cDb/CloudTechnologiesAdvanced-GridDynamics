@@ -1,10 +1,10 @@
 variable "instance_uri" {
-    description = ""
+    description = "THe URI of the Instance"
     type = string
 }
 
 variable "password" {
-    description = "value"
+    description = "The Value of the Password"
     type = string
     sensitive = true
 }

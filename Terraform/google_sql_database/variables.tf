@@ -1,4 +1,4 @@
 variable "instance_uri" {
-    description = ""
+    description = "The URI of the Instance"
     type = string
 }

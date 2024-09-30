@@ -1,6 +1,6 @@
 # terraform {
 #     backend "gcs" {
-#         bucket = ""
-#         prefix = ""
+#         bucket = "img-processing"
+#         prefix = "terraform/state"
 #     }
 # }

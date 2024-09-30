@@ -12,6 +12,7 @@ resource "google_compute_instance" "instance" {
 
     network_interface {
         network = var.network_uri
+        subnetwork = var.subnetwork_uri
 
         access_config {
             // Ephemeral Public IP

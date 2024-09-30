@@ -1,9 +1,9 @@
 variable "cluster_name" {
-    description = ""
+    description = "The Name of the Cluster"
     type = string
 }
 
 variable "cluster_location" {
-    description = ""
+    description = "The Location of the Cluster"
     type = string
 }

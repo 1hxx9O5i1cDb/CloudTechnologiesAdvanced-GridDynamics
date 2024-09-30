@@ -19,11 +19,6 @@ resource "google_container_node_pool" "node_pool" {
         }
     }
 
-    # autoscaling {
-    #     min_node_count = 1
-    #     max_node_count = 3
-    # }
-
     management {
         auto_repair = true
         auto_upgrade = true

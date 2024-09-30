@@ -12,7 +12,6 @@ resource "google_sql_database_instance" "instance" {
         }
 
         ip_configuration {
-            # Private Networking | High Availability | Disable Public IP
             private_network = var.network_uri
         }
     }

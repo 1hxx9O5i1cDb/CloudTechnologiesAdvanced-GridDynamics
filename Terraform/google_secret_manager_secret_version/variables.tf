@@ -1,10 +1,10 @@
 variable "secret_id" {
-    description = ""
+    description = "The ID of the Secret"
     type = string
 }
 
 variable "password" {
-    description = ""
+    description = "The Value of the Password"
     type = string
     sensitive = true
 }

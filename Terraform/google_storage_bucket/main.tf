@@ -13,7 +13,7 @@ resource "google_storage_bucket" "bucket" {
             storage_class = "NEARLINE"
         }
         condition {
-            age = 30    # 30 Days
+            age = 30
         }
     }
 
@@ -22,7 +22,7 @@ resource "google_storage_bucket" "bucket" {
             type = "Delete"
         }
         condition {
-            age = 365   # 365 Days
+            age = 365
         }
     }
 

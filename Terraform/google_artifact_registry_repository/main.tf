@@ -1,4 +1,4 @@
-resource "google_artifact_registry_repository" "registry" {
+resource "google_artifact_registry_repository" "repository" {
     repository_id = "docker-repo"
     format = "DOCKER"
     location = "europe-central2"
@@ -9,7 +9,7 @@ resource "google_artifact_registry_repository" "registry" {
         
         condition {
             tag_state = "ANY"
-            older_than = "604800s"  # 7 Days
+            older_than = "604800s"
         }
     }
 }
