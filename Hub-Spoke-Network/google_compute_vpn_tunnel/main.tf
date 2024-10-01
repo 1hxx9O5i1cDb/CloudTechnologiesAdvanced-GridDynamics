@@ -7,8 +7,7 @@ resource "google_compute_vpn_tunnel" "tunnel" {
     ike_version = 2
 
     local_traffic_selector = [
-        "10.0.1.0/24",
-        "10.0.2.0/24"
+        "0.0.0.0/0"
     ]
 
     remote_traffic_selector = [

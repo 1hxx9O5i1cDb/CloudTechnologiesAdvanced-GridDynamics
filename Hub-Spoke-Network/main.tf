@@ -9,11 +9,18 @@ module "google_compute_subnetwork" {
     depends_on = [ module.google_compute_network ]
 }
 
+module "google_compute_firewall" {
+    source = "./google_compute_firewall"
+    hub_network_uri = module.google_compute_network.hub_network_uri
+    spoke_network_uri = module.google_compute_network.spoke_network_uri
+    depends_on = [ module.google_compute_subnetwork ]
+}
+
 module "google_compute_network_peering" {
     source = "./google_compute_network_peering"
     hub_network_uri = module.google_compute_network.hub_network_uri
     spoke_network_uri = module.google_compute_network.spoke_network_uri
-    depends_on = [ module.google_compute_subnetwork ]
+    depends_on = [ module.google_compute_firewall ]
 }
 
 module "google_compute_vpn_gateway" {
@@ -40,17 +47,9 @@ module "google_compute_vpn_tunnel" {
     depends_on = [ module.google_compute_forwarding_rule ]
 }
 
-# module "google_compute_route" {
-#     source = "./google_compute_route"
-#     hub_network_uri = module.google_compute_network.hub_network_uri
-#     # spoke_network_uri = module.google_compute_network.spoke_network_uri
-#     vpn_tunnel_uri = module.google_compute_vpn_tunnel.vpn_tunnel_uri
-#     depends_on = [ module.google_compute_vpn_tunnel ]
-# }
-
 module "google_compute_route" {
     source = "./google_compute_route"
     hub_network_uri = module.google_compute_network.hub_network_uri
-    vpn_tunnel_uri = module.google_compute_vpn_tunnel.vpn_tunnel_uri
+    vpn_tunnel_id = module.google_compute_vpn_tunnel.vpn_tunnel_id
     depends_on = [ module.google_compute_vpn_tunnel ]
 }

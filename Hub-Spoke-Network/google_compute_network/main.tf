@@ -5,7 +5,7 @@ resource "google_compute_network" "hub_network" {
 }
 
 resource "google_compute_network" "spoke_network" {
-    name = "spoke-network"
+    name = "spoke-vpc"
     description = "Spoke Network"
     auto_create_subnetworks = false
 }
