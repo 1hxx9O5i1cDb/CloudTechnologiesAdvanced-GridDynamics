@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: frontend-image:latest
+        image: wordpress
         ports:
         - containerPort: 80
         resources:

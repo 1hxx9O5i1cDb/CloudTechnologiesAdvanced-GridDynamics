@@ -4,13 +4,13 @@
     "columns": 4,
     "widgets": [
       {
-        "title": "CPU Utilization",
+        "title": "CPU Usage Time",
         "xyChart": {
           "dataSets": [
             {
               "timeSeriesQuery": {
                 "timeSeriesFilter": {
-                  "filter": "metric.type=\"kubernetes.io/container/cpu/usage_time\""
+                  "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" resource.type=\"k8s_container\""
                 }
               }
             }
@@ -18,13 +18,13 @@
         }
       },
       {
-        "title": "Memory Utilization",
+        "title": "Memory Usage",
         "xyChart": {
           "dataSets": [
             {
               "timeSeriesQuery": {
                 "timeSeriesFilter": {
-                  "filter": "metric.type=\"kubernetes.io/container/memory/usage_bytes\""
+                  "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" resource.type=\"k8s_container\""
                 }
               }
             }
@@ -32,13 +32,13 @@
         }
       },
       {
-        "title": "Node Availability",
+        "title": "Allocatable Cores",
         "xyChart": {
           "dataSets": [
             {
               "timeSeriesQuery": {
                 "timeSeriesFilter": {
-                  "filter": "metric.type=\"kubernetes.io/node/condition\""
+                  "filter": "metric.type=\"kubernetes.io/node/cpu/allocatable_cores\" resource.type=\"k8s_node\""
                 }
               }
             }
@@ -46,13 +46,13 @@
         }
       },
       {
-        "title": "Pod Network Traffic",
+        "title": "Bytes Received",
         "xyChart": {
           "dataSets": [
             {
               "timeSeriesQuery": {
                 "timeSeriesFilter": {
-                  "filter": "metric.type=\"kubernetes.io/network/received_bytes_count\""
+                  "filter": "metric.type=\"kubernetes.io/pod/network/received_bytes_count\" resource.type=\"k8s_pod\""
                 }
               }
             }
