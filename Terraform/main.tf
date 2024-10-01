@@ -113,7 +113,7 @@ module "google_container_cluster" {
     source = "./google_container_cluster"
     network_uri = module.google_compute_network.network_uri
     subnetwork_uri = module.google_compute_subnetwork.private_subnetwork_uri
-    depends_on = [ module.google_secret_manager_secret_version ]
+    depends_on = [ module.google_pubsub_topic ]
 }
 
 module "google_container_node_pool" {
