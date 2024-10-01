@@ -1,5 +1,5 @@
 resource "google_compute_subnetwork" "public_subnetwork" {
-    name = "public-subnet"
+    name = "public-subnet-k8s"
     description = "Public Subnet - K8S"
     network = var.network_uri
     region = "europe-central2"
@@ -7,7 +7,7 @@ resource "google_compute_subnetwork" "public_subnetwork" {
 }
 
 resource "google_compute_subnetwork" "private_subnetwork" {
-    name = "private-subnet"
+    name = "private-subnet-k8s"
     description = "Private Subnet - K8S"
     network = var.network_uri
     region = "europe-central2"

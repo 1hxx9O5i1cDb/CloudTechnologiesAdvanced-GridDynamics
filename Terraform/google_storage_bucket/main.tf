@@ -12,6 +12,7 @@ resource "google_storage_bucket" "bucket" {
             type = "SetStorageClass"
             storage_class = "NEARLINE"
         }
+
         condition {
             age = 30
         }
@@ -21,6 +22,7 @@ resource "google_storage_bucket" "bucket" {
         action {
             type = "Delete"
         }
+
         condition {
             age = 365
         }

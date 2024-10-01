@@ -2,7 +2,7 @@ resource "google_compute_instance" "instance" {
     name = "bastion-host"
     description = "Bastion Host | MySQL"
     machine_type = "e2-micro"
-    zone = "europe-west2-a"
+    zone = "europe-central2-a"
 
     boot_disk {
         initialize_params {
